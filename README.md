@@ -26,6 +26,13 @@ exp_sprt = SPRT(
   theta1 = 2,
   dist = Distribution.EXPONENTIAL
 )
+norm_sprt = SPRT(
+  alpha = 0.05,
+  beta = 0.05,
+  theta0 = 1,
+  theta1 = 2,
+  dist = Distribution.NORMAL
+)
 ```
 
 Then, given some observation(s) from the population we can update our test as
@@ -37,5 +44,11 @@ exp_sprt.test(1.5)
 exp_sprt.test(np.array([2.00, 3.26, 2.46, 2.12, 4.88]))
 # <Decision.REJECT: 'Reject the null hypothesis'>
 exp_sprt.summary()
+# {'decision': 'Reject the null hypothesis', 'N': 6}
+norm_sprt.test(1.5)
+# <Decision.CONTINUE: 'Continue testing'>
+norm_sprt.test(np.array([2.00, 3.26, 2.46, 2.12, 4.88]))
+# <Decision.REJECT: 'Reject the null hypothesis'>
+norm_sprt.summary()
 # {'decision': 'Reject the null hypothesis', 'N': 6}
 ```
